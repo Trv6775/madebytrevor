@@ -12,23 +12,42 @@ if (menuToggle && navMenu) {
 }
 
 // Dark and light theme
-const themeToggle = document.getElementById("themeToggle");
 
-if (localStorage.getItem("theme") === "light") {
-    document.body.classList.add("light");
+/* THEME TOGGLE */
+
+/* THEME TOGGLE */
+const themeToggle = document.getElementById("theme-toggle");
+
+// Load the saved theme
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme === "light") {
+    document.body.classList.add("light-theme");
 }
 
+// Update the button icon
+function updateThemeIcon() {
+    if (themeToggle) {
+        const isLight = document.body.classList.contains("light-theme");
+        themeToggle.textContent = isLight ? "☾" : "☀";
+    }
+}
+
+updateThemeIcon();
+
+// Switch themes when clicked
 if (themeToggle) {
     themeToggle.addEventListener("click", () => {
-        document.body.classList.toggle("light");
+        document.body.classList.toggle("light-theme");
 
-        const theme = document.body.classList.contains("light")
-            ? "light"
-            : "dark";
+        const isLight = document.body.classList.contains("light-theme");
 
-        localStorage.setItem("theme", theme);
+        localStorage.setItem("theme", isLight ? "light" : "dark");
+
+        updateThemeIcon();
     });
 }
+
 
 // Typing animation
 const typingElement = document.getElementById("typing");
@@ -36,7 +55,7 @@ const typingElement = document.getElementById("typing");
 if (typingElement) {
     const words = [
         "Software Developer",
-        "Web Developer",
+        "UX/UI Designer",
         "Digital Creator"
     ];
 
