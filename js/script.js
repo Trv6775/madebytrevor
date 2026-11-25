@@ -1,16 +1,23 @@
 
 // Mobile navigation
-const menuToggle = document.getElementById("menuToggle");
-const navMenu = document.getElementById("navMenu");
+document.addEventListener("DOMContentLoaded", () => {
 
-if (menuToggle && navMenu) {
-    menuToggle.addEventListener("click", () => {
-        navMenu.classList.toggle("open");
-        menuToggle.textContent =
-            navMenu.classList.contains("open") ? "×" : "☰";
-    });
-}
+    const menuToggle = document.getElementById("menu-toggle");
+    const navMenu = document.getElementById("nav-links");
 
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener("click", () => {
+
+            navMenu.classList.toggle("open");
+
+            const isOpen = navMenu.classList.contains("open");
+
+            menuToggle.textContent = isOpen ? "×" : "☰";
+            menuToggle.setAttribute("aria-expanded", isOpen);
+        });
+    }
+
+});
 // Dark and light theme
 
 /* THEME TOGGLE */
